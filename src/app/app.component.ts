@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component,ViewChild } from '@angular/core';
+import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import * as firebase from 'firebase';
 import { HomePage } from '../pages/home/home';
+
+import { RegistrarPage } from '../pages/registrar/registrar';
+import { NuevoContenidoPage } from '../pages/nuevo-contenido/nuevo-contenido';
+
 import { InicioSesionPage } from '../pages/inicio-sesion/inicio-sesion';
 export const firebaseConfig = {
   apiKey: "AIzaSyA1_-Sc6cTCrQQ3ba7cQAweGYjO_OiIdrs",
@@ -18,9 +22,21 @@ firebase.initializeApp(firebaseConfig)
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = InicioSesionPage;
+  
+ @ViewChild('NAV') nav: Nav;
+  public rootPage: any;
+  public pages: Array<{ titulo: string, component: any, icon: string }>;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+    this.rootPage = InicioSesionPage;
+  this.pages = [
+
+    // { titulo: 'Inicio',          component: HomePage,        icon: 'home'},
+    // { titulo: '',        component: ClientesPage,         icon: 'person'},
+     { titulo: 'Nuevo Contenido',         component: NuevoContenidoPage,          icon: 'add'},
+   { titulo: 'Registrar Alumno',     component:RegistrarPage    ,     icon: 'person'},
+    { titulo: 'Cerrar Sesion',   component: InicioSesionPage,     icon: 'close-circle'}
+  ];
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -28,5 +44,13 @@ export class MyApp {
       splashScreen.hide();
     });
   }
-}
 
+
+
+
+
+  goToPage(page){
+    this.nav.setRoot(page);
+  }
+
+}

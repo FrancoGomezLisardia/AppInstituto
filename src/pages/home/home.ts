@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
-import { NavController,ViewController ,LoadingController,ModalController,NavParams} from 'ionic-angular';
+import { NavController,ViewController ,LoadingController,ModalController,NavParams,MenuController} from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import {  AngularFireDatabase  } from 'angularfire2/database';
+import {  AngularFireDatabase  } from 'angularfire2/database-deprecated';
 import firebase from "firebase"
 import { InicioSesionPage } from '../inicio-sesion/inicio-sesion';
+import { NuevoContenidoPage } from '../nuevo-contenido/nuevo-contenido';
+
+import { ModificarContenidoPage } from '../modificar-contenido/modificar-contenido';
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -17,18 +22,23 @@ export class HomePage {
 lista:any;
   constructor(public navCtrl: NavController, 
     public viewCtrl:ViewController,
+    public menuCtrl: MenuController,
     public navParams: NavParams,
     private iab: InAppBrowser,
     private loadingCtrl:LoadingController,
     public modalCtrl:ModalController,
     //private videoPlayer: VideoPlayer,
     public fireDatbase:AngularFireDatabase) {
+ 
+      
       this.tipo_usuario=this.navParams.get("usuarioLogeado");
+     
      console.log(this.tipo_usuario)
       if (this.tipo_usuario=="profe") {
         this.verificar=true
       }else{
         this.verificar=false
+        this.menuCtrl.get().enable(false);//Desactiva menu deslizable
       }
       console.log(this.tipo_usuario)
     let loading = this.loadingCtrl.create({
@@ -63,19 +73,49 @@ loading.dismiss();
     this.navCtrl.setRoot(InicioSesionPage)
    }
    agregarContenido(){
-    //let modal =this.modalCtrl.create(NuevoContenidoPage);
-   // modal.present();
+    let modal =this.modalCtrl.create(NuevoContenidoPage);
+   modal.present();
    }
    irASitio(enlace){
     this.iab.create(enlace,"_blank");
   
    }
    editar(elemento){
-
+    let modal =this.modalCtrl.create(ModificarContenidoPage,{"contenido":elemento});
+    modal.present();
    }
    eliminar(elemento){
 
    }
+   initializeItems2(): void {
+    this.countryList = this.loadedCountryList;
+    console.log(this.countryList);
+  }
+//---------------------------------------------------
+  getItems2(searchbar) {
+    // Reset items back to all of the items
+    this.initializeItems2();
+  
+    // set q to the value of the searchbar
+    var q = searchbar.srcElement.value;
+    
+    // if the value is an empty string don't filter the items
+    if (!q) {
+      return;
+    }
+  
+    this.countryList = this.countryList.filter((v) => {
+      if(v.titulo && q) {
+        if (v.titulo.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+          return true;
+        }
+        return false;
+      }
+    });
+  
+    console.log(q, this.countryList.length);
+  
+  }
 //    reproducir(){
 // // Playing a video.
 // this.videoPlayer.play('./assets/imgs/movie.mp4').then(() => {

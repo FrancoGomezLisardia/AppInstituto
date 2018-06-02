@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="violeta">
-      <ion-buttons left>
+      <ion-buttons right>
           <button ion-button (click)="cerrarModal()">
               <ion-icon name="close-circle" 
              
@@ -9,9 +9,32 @@
           </button>
            </ion-buttons>
     
-  <ion-title text-color="violeta">
-   Instituto de practicas periciales
+  <ion-title text-center>
+   Inicio
   </ion-title>
+
+  <!-- <ion-buttons left *ngIf= "!verificar">
+    <button   ion-button style="display: none;">
+     <ion-icon  name="menu"></ion-icon>
+    </button>
+  </ion-buttons> -->
+   
+    
+      <ion-buttons *ngIf= "!verificar" left>
+				<button ion-button style="display: none;" menuToggle>
+				 <ion-icon  name="menu"></ion-icon>
+				</button>
+         </ion-buttons>
+         <ion-buttons *ngIf= "verificar" left>
+          <button ion-button  menuToggle>
+           <ion-icon  name="menu"></ion-icon>
+          </button>
+           </ion-buttons>
+         
+       
+    
+    
+    
   <!-- <ion-buttons right>
       <button ion-button (click)="cerrarModal()">
         <ion-icon name="close-circle" 
@@ -81,12 +104,15 @@
         </ion-card-content>
 
       </ion-card>	 -->
-      <ion-fab bottom right>
-          <button ion-fab mini color="danger" (click)="agregarContenido()">
-          <!-- [disabled]=" this._cap.tipo_usuario==2"> -->
+      <!-- <ion-fab bottom right >
+          <button  ion-button clear  style="display: none;"ion-fab mini color="danger" (click)="agregarContenido()">
+         
             <ion-icon name="add"></ion-icon>
           </button>
       
-          
-        </ion-fab>
+          <button *ngIf= "verificar" ion-button clear  ion-fab mini color="danger" (click)="agregarContenido()">
+            
+              <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-fab> -->
 </ion-content>

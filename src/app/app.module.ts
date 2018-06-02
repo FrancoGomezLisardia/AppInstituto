@@ -3,13 +3,19 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+//PAGINAS
 import { InicioSesionPage } from '../pages/inicio-sesion/inicio-sesion';
+import { RegistrarPage } from '../pages/registrar/registrar';
+import { NuevoContenidoPage } from '../pages/nuevo-contenido/nuevo-contenido';
+import { ModificarContenidoPage } from '../pages/modificar-contenido/modificar-contenido';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import * as firebase from 'firebase';
 import { AngularFireModule }         from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
+
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 //import { InicioSesionPage } from '../pages/inicio-sesion/inicio-sesion';
 //import {RegistrarPage} from '../pages/registrar/registrar'
@@ -28,7 +34,10 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
   declarations: [
     MyApp,
     HomePage,
-    InicioSesionPage 
+    InicioSesionPage,
+    RegistrarPage ,
+  NuevoContenidoPage,
+  ModificarContenidoPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +49,10 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
   entryComponents: [
     MyApp,
     HomePage,
-    InicioSesionPage 
+    InicioSesionPage ,
+    RegistrarPage ,
+    NuevoContenidoPage,
+    ModificarContenidoPage
   ],
   providers: [
     InAppBrowser,

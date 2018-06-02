@@ -4,7 +4,7 @@ import { HomePage } from '../home/home';
 import firebase from 'firebase';
 import { UsersModels } from '../../models/users-model';
 
-import { AngularFireDatabase  } from 'angularfire2/database';
+import { AngularFireDatabase  } from 'angularfire2/database-deprecated';
 /**
  * Generated class for the InicioSesionPage page.
  *
