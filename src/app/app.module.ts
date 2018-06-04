@@ -15,11 +15,14 @@ import * as firebase from 'firebase';
 import { AngularFireModule }         from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
+import { DetalleAlumnoPage } from '../pages/detalle-alumno/detalle-alumno';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { ProveedorProvider } from '../providers/proveedor/proveedor';
 //import { InicioSesionPage } from '../pages/inicio-sesion/inicio-sesion';
 //import {RegistrarPage} from '../pages/registrar/registrar'
 //import { FileChooser } from '@ionic-native/file-chooser';
+import { AlumnosPage } from '../pages/alumnos/alumnos';
 
  export const firebaseConfig = {
     apiKey: "AIzaSyA1_-Sc6cTCrQQ3ba7cQAweGYjO_OiIdrs",
@@ -37,7 +40,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     InicioSesionPage,
     RegistrarPage ,
   NuevoContenidoPage,
-  ModificarContenidoPage
+  ModificarContenidoPage,
+  AlumnosPage,
+  DetalleAlumnoPage
   ],
   imports: [
     BrowserModule,
@@ -52,13 +57,16 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     InicioSesionPage ,
     RegistrarPage ,
     NuevoContenidoPage,
-    ModificarContenidoPage
+    ModificarContenidoPage,
+    AlumnosPage,
+    DetalleAlumnoPage
   ],
   providers: [
     InAppBrowser,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ProveedorProvider
   ]
 })
 export class AppModule {}

@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import * as firebase from 'firebase';
 import { HomePage } from '../pages/home/home';
+import { AlumnosPage } from '../pages/alumnos/alumnos';
 
 import { RegistrarPage } from '../pages/registrar/registrar';
 import { NuevoContenidoPage } from '../pages/nuevo-contenido/nuevo-contenido';
@@ -31,10 +32,10 @@ export class MyApp {
     this.rootPage = InicioSesionPage;
   this.pages = [
 
-    // { titulo: 'Inicio',          component: HomePage,        icon: 'home'},
-    // { titulo: '',        component: ClientesPage,         icon: 'person'},
+    { titulo: 'Inicio',          component: HomePage,        icon: 'home'},
+    //  { titulo: '',        component: ClientesPage,         icon: 'person'},
      { titulo: 'Nuevo Contenido',         component: NuevoContenidoPage,          icon: 'add'},
-   { titulo: 'Registrar Alumno',     component:RegistrarPage    ,     icon: 'person'},
+    { titulo: 'Alumno',     component:AlumnosPage    ,     icon: 'person'},
     { titulo: 'Cerrar Sesion',   component: InicioSesionPage,     icon: 'close-circle'}
   ];
     platform.ready().then(() => {

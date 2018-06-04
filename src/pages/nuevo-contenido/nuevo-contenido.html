@@ -19,8 +19,8 @@
       <ion-title text-center >Nuevo Contenido</ion-title>
   
       <ion-buttons end>
-        <button ion-button (click)="guardar()">
-        <!-- [disabled]="titulo.lenght <=1 || precio ==0 || imagenPreview <= 1 || stock ==0" -->
+        <button ion-button (click)="guardar()"
+         [disabled]="titulo.lenght <=1 || enlace ==0 || descripcion <= 1">
         <ion-icon name="checkmark-circle" 
                   color="secondary">
                  

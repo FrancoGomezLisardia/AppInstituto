@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams,LoadingController,AlertController }
 import { HomePage } from '../home/home';
 import firebase from 'firebase';
 import { UsersModels } from '../../models/users-model';
+import {ProveedorProvider} from "../../providers/proveedor/proveedor";
 
 import { AngularFireDatabase  } from 'angularfire2/database-deprecated';
 /**
@@ -23,6 +24,7 @@ export class InicioSesionPage {
   public usuariosRef:firebase.database.Reference;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
+              private proveedor:ProveedorProvider,
               private alertCtrl:AlertController,
               private loadingCtrl:LoadingController) {
     let loading = this.loadingCtrl.create({
@@ -58,9 +60,9 @@ Iniciar_Sesion() {
     //    //this.guardar_storage(element);
     //    //this.cip.usuario_actual.push(element)
     //    //console.log("ID Usuario Actual:",this.cip.usuario_actual)
-    //    //this.cip.tipo_usuario=element.tipo_usuario
+      this.proveedor.tipo_usuario=element.tipo_usuario
     //    //this.cip.id_usuario=element.id
-        this.navCtrl.setRoot(HomePage,{'usuarioLogeado':element.tipo_usuario});
+        this.navCtrl.setRoot(HomePage,{'usuarioLogeado':element});
        return;
      } 
   }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController,ToastController } from 'ionic-angular';
 
-
+import{HomePage} from "../../pages/home/home"
 import * as firebase from 'firebase';
 import {  AngularFireDatabase } from "angularfire2/database-deprecated";
 
@@ -37,20 +37,24 @@ export class NuevoContenidoPage {
     this.viewCtrl.dismiss();
    }
   guardar(){
+    let key_=new Date().valueOf().toString();
     let video={
+      key:key_,
       enlace:this.enlace,
       titulo:this.titulo,
       descripcion:this.descripcion,
       estado:this.estado
     }
-    this.fireDatabase.list('video/').push(video)
+   
+    
+    this.fireDatabase.object(`/video/${ key_ }`).update(video)
     let toast = this.toastCtrl.create({
       message: 'Enlace agregado',
       duration: 3000
     });
     toast.present();
-    this.viewCtrl.dismiss()
-    
+    //this.viewCtrl.dismiss()
+    this.navCtrl.setRoot(HomePage)
   }
 
 

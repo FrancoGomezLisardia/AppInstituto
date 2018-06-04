@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController,ViewController ,LoadingController,ModalController,NavParams,MenuController} from 'ionic-angular';
+import { NavController,ViewController ,LoadingController,
+  ModalController,NavParams,MenuController,AlertController,ToastController} from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import {  AngularFireDatabase  } from 'angularfire2/database-deprecated';
 import firebase from "firebase"
 import { InicioSesionPage } from '../inicio-sesion/inicio-sesion';
 import { NuevoContenidoPage } from '../nuevo-contenido/nuevo-contenido';
+import {ProveedorProvider} from "../../providers/proveedor/proveedor";
 
 import { ModificarContenidoPage } from '../modificar-contenido/modificar-contenido';
 
@@ -22,20 +24,25 @@ export class HomePage {
 lista:any;
   constructor(public navCtrl: NavController, 
     public viewCtrl:ViewController,
+    public toastCtrl:ToastController,
+    public alertCtrl:AlertController,
     public menuCtrl: MenuController,
     public navParams: NavParams,
     private iab: InAppBrowser,
+    public proveedor:ProveedorProvider,
     private loadingCtrl:LoadingController,
     public modalCtrl:ModalController,
     //private videoPlayer: VideoPlayer,
     public fireDatbase:AngularFireDatabase) {
+      this.tipo_usuario=this.proveedor.tipo_usuario
  
-      
-      this.tipo_usuario=this.navParams.get("usuarioLogeado");
+     
+    //  this.tipo_usuario=this.navParams.get("usuarioLogeado");
      
      console.log(this.tipo_usuario)
       if (this.tipo_usuario=="profe") {
         this.verificar=true
+        this.menuCtrl.get().enable(true)
       }else{
         this.verificar=false
         this.menuCtrl.get().enable(false);//Desactiva menu deslizable
@@ -85,8 +92,39 @@ loading.dismiss();
     modal.present();
    }
    eliminar(elemento){
-
-   }
+    let confirmar = this.alertCtrl.create({
+      title: 'Eliminar',
+      message: '¿Desea eliminar esta contenido?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            
+            console.log('Presiono Cancelar');
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Presiono Aceptar');
+            let contenido = this.fireDatbase.list('/video');
+            contenido.remove(elemento.key) ;//elimina pedidos
+    
+      let toast = this.toastCtrl.create({
+        message: 'Pedido eliminado',
+        duration: 1000
+      });
+      toast.present();
+        
+     
+          }
+        }
+      ]
+    });
+  confirmar.present();
+  }
+  
+   
    initializeItems2(): void {
     this.countryList = this.loadedCountryList;
     console.log(this.countryList);
