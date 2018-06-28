@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,LoadingController,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController,AlertController,ModalController } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { RegistrarPage } from '../registrar/registrar';
+
 import firebase from 'firebase';
 import { UsersModels } from '../../models/users-model';
 import {ProveedorProvider} from "../../providers/proveedor/proveedor";
@@ -24,6 +26,7 @@ export class InicioSesionPage {
   public usuariosRef:firebase.database.Reference;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
+              public modalCtrl:ModalController,
               private proveedor:ProveedorProvider,
               private alertCtrl:AlertController,
               private loadingCtrl:LoadingController) {
@@ -78,7 +81,7 @@ return;
 }
 Registrar(){
 
-// let modal =this.modalCtrl.create(RegistrarPage);
-// modal.present();
+let modal =this.modalCtrl.create(RegistrarPage);
+modal.present();
 }
 }

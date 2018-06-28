@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import firebase from 'firebase';
 import { AngularFireDatabase  } from 'angularfire2/database-deprecated';
 import{HomePage} from "../../pages/home/home"
+import { EmailComposer } from '@ionic-native/email-composer';
 
 /**
  * Generated class for the RegistrarPage page.
@@ -28,6 +29,7 @@ export class RegistrarPage {
               public viewCtrl:ViewController,
               public toastCtrl:ToastController,
               public alertCtrl:AlertController,
+              private emailComposer: EmailComposer,
               private afDB: AngularFireDatabase) {
                 this.myForm = this.createMyForm();
   }
@@ -41,12 +43,12 @@ export class RegistrarPage {
     let Nuevo_Usuario : Interface_Usuario = {
       nombre:this.myForm.value.name,
       apellido:this.myForm.value.lastName,
-      dni:this.myForm.value.DNI,
+     
       id:id_Usuario,
       telefono:this.myForm.value.telefono,
-      domicilio:this.myForm.value.domicilio,
-      fecha_Nacimiento:this.myForm.value.dateBirth,
-      sexo:this.myForm.value.gender,
+      //domicilio:this.myForm.value.domicilio,
+      //fecha_Nacimiento:this.myForm.value.dateBirth,
+      //sexo:this.myForm.value.gender,
       tipo_usuario:"Alumno",
       correo:this.myForm.value.email,
       contrasena:this.myForm.value.password,
@@ -62,6 +64,20 @@ export class RegistrarPage {
    });
    toast.present();
      //this.viewCtrl.dismiss();
+
+     let email = {
+      to: 'lisardia.franco@gmail.com',
+      cc: '',
+      bcc: [],
+      attachments: [
+        //Archivos adjuntos
+      ],
+      subject: 'Nuevo Usuario',
+      body: 'Se ha registrado un nuevo usuario',
+      isHtml: true
+    };
+    this.emailComposer.open(email);
+
      this.navCtrl.setRoot(HomePage)
     }else{
       let confirmar = this.alertCtrl.create({
@@ -113,24 +129,37 @@ verificar_correo(){
                 Validators.maxLength(30), 
                 Validators.pattern('[a-zA-Z ]*'),
                 Validators.required])],
-      DNI:['', Validators.compose([
-               Validators.required,
-               Validators.maxLength(8),
-               Validators.minLength(8),
-     ])],
+   
       email: ['', Validators.compose([
                   Validators.required,
                   Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
-      dateBirth: ['', Validators.required],
-      domicilio:['', Validators.required],
-      telefono: ['', Validators.required],
-      password: ['',Validators.compose([
-                    Validators.required,
-                    Validators.maxLength(6),
-])],
-      gender: ['', Validators.required],
-    });
+      
+      telefono: ['',Validators.compose([
+                    Validators.maxLength(10), 
+                    Validators.required])],
+
+password: ['', Validators.compose([
+               Validators.required, 
+               Validators.minLength(6), 
+               Validators.maxLength(12)])],
+confirmPassword: ['', Validators.required],
+}, {validator: this.matchingPasswords('password', 'confirmPassword')}); 
    
+  }
+
+
+  matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
+   
+    return (group: FormGroup): {[key: string]: any} => {
+      let password = group.controls[passwordKey];
+      let confirmPassword = group.controls[confirmPasswordKey];
+
+      if (password.value !== confirmPassword.value) {
+        return {
+          mismatchedPasswords: true
+        };
+      }
+    }
   }
   cerrarModal() {
     this.viewCtrl.dismiss();
@@ -139,12 +168,12 @@ verificar_correo(){
  interface Interface_Usuario{
   nombre:string;
   apellido:string;
-  dni:number;
+  //dni:number;
   id:string;
   telefono:number;
-  domicilio:string;
-  fecha_Nacimiento:string;
-  sexo:string;
+ // domicilio:string;
+  //fecha_Nacimiento:string;
+  //sexo:string;
   tipo_usuario:string;
   correo:string;
   contrasena:number

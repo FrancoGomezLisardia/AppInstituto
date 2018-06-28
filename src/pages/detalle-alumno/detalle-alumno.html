@@ -14,5 +14,31 @@
 
 
 <ion-content padding>
-
+  
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title class="mayusculas">
+          {{alumno.nombre}} {{alumno.apellido}}
+      </ion-card-title>
+      <strong>Telefono:</strong> {{ alumno.Telefono}}
+      <br>
+      <strong>Email:</strong>  {{ alumno.email }}
+       <br>
+       <strong>DNI:</strong>  {{ alumno.dni }}
+       <br>
+       <strong>Domicilio:</strong>  {{ cliente.domicilio }}
+       <br>
+       <strong>Fecha Nacimiento:</strong>  {{ alumno.fecha_Nacimiento }}
+       <br>
+       <strong>Sexo:</strong> {{ cliente.sexo }}
+       
+    </ion-card-content>
+  </ion-card>
+  <ion-fab top right>
+      <button ion-fab mini color="danger" (click)="modificar()">
+        <ion-icon name="create"></ion-icon></button>
+      <button ion-fab mini color="danger"(click)="eliminar()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-fab>
 </ion-content>

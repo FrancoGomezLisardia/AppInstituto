@@ -8,6 +8,7 @@ import { AlumnosPage } from '../pages/alumnos/alumnos';
 
 import { RegistrarPage } from '../pages/registrar/registrar';
 import { NuevoContenidoPage } from '../pages/nuevo-contenido/nuevo-contenido';
+import { PushNotificationsProvider } from '../providers/push-notifications/push-notifications';
 
 import { InicioSesionPage } from '../pages/inicio-sesion/inicio-sesion';
 export const firebaseConfig = {
@@ -28,7 +29,10 @@ export class MyApp {
   public rootPage: any;
   public pages: Array<{ titulo: string, component: any, icon: string }>;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, 
+              statusBar: StatusBar, 
+              splashScreen: SplashScreen,
+             public notificaciones:PushNotificationsProvider) {
     this.rootPage = InicioSesionPage;
   this.pages = [
 
@@ -43,6 +47,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      this.notificaciones.init_notificactions()
     });
   }
 

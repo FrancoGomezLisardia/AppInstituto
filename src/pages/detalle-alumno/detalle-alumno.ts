@@ -14,8 +14,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'detalle-alumno.html',
 })
 export class DetalleAlumnoPage {
-
+   alumno: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.alumno=this.navParams.get("'alumno")
   }
 
   ionViewDidLoad() {

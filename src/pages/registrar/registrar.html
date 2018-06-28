@@ -26,63 +26,78 @@
            <ion-label stacked>Nombres:</ion-label>
            <ion-input formControlName="name" type="text" placeholder="Nombre"></ion-input>
         </ion-item>
+        <ion-item *ngIf="myForm.get('name').errors && myForm.get('name').dirty">
+          <p *ngIf="myForm.get('name').hasError('required')" class="error">
+            El nombre es requerido.
+          </p>
+          <p *ngIf="myForm.get('name').hasError('maxlength')" class="error">
+            El maximo de caracteres permitidos es 30.
+          </p>
+          </ion-item>
   
         <ion-item>
             <ion-icon name="person" item-left></ion-icon>
             <ion-label stacked>Apellidos:</ion-label>
             <ion-input formControlName="lastName" type="text" placeholder="Apellidos"></ion-input>
         </ion-item>
-  
+        <ion-item *ngIf="myForm.get('lastName').errors && myForm.get('lastName').dirty">
+          <p *ngIf="myForm.get('lastName').hasError('required')" class="error">
+            El apellido es requerido.
+          </p>
+          <p *ngIf="myForm.get('name').hasError('maxlength')" class="error">
+            El maximo de caracteres permitidos es 30.
+          </p>
+          </ion-item>
         <ion-item>
            <ion-icon name="mail" item-left></ion-icon>
             <ion-label stacked>Correo electronico:</ion-label>
             <ion-input formControlName="email" type="email" placeholder="Correo Electronico"></ion-input>
         </ion-item>
-  
-        <ion-item>
-            <ion-icon name="key" item-left></ion-icon>
-            <ion-label stacked>Contraseña</ion-label>
-            <ion-input formControlName="password" type="password" min="6" placeholder="Contraseña"></ion-input>
+        <ion-item *ngIf="myForm.get('email').errors && myForm.get('email').dirty">
+          <p *ngIf="myForm.get('email').hasError('required')" class="error">
+            El correo es requerido.
+          </p>
+          <p *ngIf="myForm.get('email').hasError('pattern')" class="error">
+            El correo electronico indicado no es valido.
+          </p>
         </ion-item>
-  
         <ion-item>
-            <ion-icon name="calendar" item-left></ion-icon>
-            <ion-label stacked>Fecha de nacimiento:</ion-label>
-            <ion-datetime formControlName="dateBirth" displayFormat="MM-DD-YYYY" 
-                          placeholder="MM-DD-YYY"></ion-datetime>
+          <ion-icon name="eye" item-start></ion-icon>
+          <ion-label stacked>Contraseña:</ion-label>
+          <ion-input formControlName="password" type="password" placeholder="Contraseña"></ion-input>
         </ion-item>
-  
+        <ion-item class='form-text error' *ngIf="myForm.controls.password.touched && !myForm.controls.password.valid">
+           <p>
+              La contraseña debe tener entre 6<br>
+              y 12 caracteres
+           </p> 
+            
+          </ion-item>
         <ion-item>
-            <ion-icon name="person" item-left></ion-icon>
-            <ion-label stacked>DNI:</ion-label>
-            <ion-input formControlName="DNI" type="number" placeholder="DNI"></ion-input>
+          <ion-icon name="eye" item-start></ion-icon>
+          <ion-label stacked>Confirmar contraseña:</ion-label>
+          <ion-input formControlName="confirmPassword" type="password" 
+                      placeholder="Confirmar contraseña"></ion-input>
         </ion-item>
-  
+        
+        <ion-item class='form-text error' *ngIf="myForm.controls.confirmPassword.touched && myForm.hasError('mismatchedPasswords') && myForm.controls.password.valid">
+          <p> Las contraseñas no coiciden</p>
+        </ion-item>
+          
+        
+
         <ion-item>
           <ion-icon name="call" item-left></ion-icon>
           <ion-label stacked>Telefono:</ion-label>
           <ion-input  formControlName="telefono" type="number" placeholder="Telefono"></ion-input>
         </ion-item>
-  
         <ion-item>
-          <ion-icon name="home" item-left></ion-icon>
-          <ion-label stacked>Domicilio:</ion-label>
-          <ion-input  formControlName="domicilio" type="text" placeholder="Domicilio"></ion-input>
+          <p *ngIf="myForm.get('telefono').hasError('maxlength')" class="error">
+            El numero de celular no puede 
+            <br> contener mas de 10 caracteres
+          </p>
         </ion-item>
-              
-          
-            <ion-row radio-group formControlName="gender">
-              <ion-item>
-                <ion-icon name="woman" item-left></ion-icon>
-                <ion-label>Mujer</ion-label>
-                <ion-radio value="mujer"></ion-radio>
-              </ion-item>
-              <ion-item>
-                <ion-icon name="man" item-left></ion-icon>
-                <ion-label>Hombre</ion-label>
-                <ion-radio value="hombre"></ion-radio>
-              </ion-item>
-            </ion-row>
+        
        </ion-list>
           <div padding>
             

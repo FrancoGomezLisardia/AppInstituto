@@ -38,15 +38,66 @@
 </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content >
+
+    
+      
   <ion-searchbar (ionInput)="getItems2($event)" placeholder="Buscar"></ion-searchbar>
-    <ion-card *ngFor="let video of countryList">
+  <ion-list *ngFor="let video of countryList">
+      <ion-item  >
+        <ion-thumbnail item-start>
+            <img   src="./assets/imgs/images.jpg" >
+        </ion-thumbnail>
+        {{video.titulo}}
+        <p align="justify">{{video.descripcion}}</p>       
+              
+            
+                
+        
+       
+        <div *ngIf= "this.tipo_usuario == profe">
+          <p>asdasdasd</p>
+        </div>
+        
+        <div>
+            <button   ion-button clear item-end  (click)="irASitio(video.enlace)" >Ver</button>
+     
+        <button *ngIf= "!verificar" ion-button clear item-end style="display: none;" (click)="editar(video)" >Editar</button> 
+        <button *ngIf= "verificar" ion-button clear item-end  (click)="editar(video)" >Editar</button>
+
+        <button *ngIf= "!verificar" ion-button clear item-end style="display: none;" (click)="eliminar(video)" >Eliminar</button> 
+        <button *ngIf= "verificar" ion-button clear item-end  (click)="eliminar(video)" >Eliminar</button>
+        </div>
+        
+      </ion-item>
+      
+    </ion-list>
+    <!-- <ion-card *ngFor="let video of countryList">
+
+        <ion-grid>
+            <ion-row>
+              <ion-col col-12>
+                 
+                  <h3>{{video.titulo}}</h3>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-6>This column will take 6 columns</ion-col>
+            </ion-row>
+          </ion-grid>
+ 
  <ion-grid>
+    <ion-col>
+        <img  align="center" style="width: 50px; height: 50px;" src="./assets/imgs/images.jpg" > 
+    </ion-col>
    <ion-row>
+     
      <ion-col>
+
       <ion-card-content>
         <ion-card-title>
-                {{video.titulo}}
+            {{video.titulo}}
+               
         </ion-card-title>
         
         <p>{{video.descripcion}}</p>
@@ -72,7 +123,7 @@
   
                                  
                         </ion-card>
-                         
+                          -->
           
         
             
