@@ -53,6 +53,7 @@ loading.dismiss();
 
 
 Invitado(){
+  this.proveedor.tipo_usuario=""
   this.navCtrl.setRoot(HomePage)
 }
 Iniciar_Sesion() {

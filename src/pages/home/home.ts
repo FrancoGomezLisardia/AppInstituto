@@ -67,7 +67,7 @@ return false;
 
 this.countryList = countries;
 this.loadedCountryList = countries;
-this.consulta()
+//this.consulta()
 });
 //-------------------------------------------------------
 loading.dismiss();

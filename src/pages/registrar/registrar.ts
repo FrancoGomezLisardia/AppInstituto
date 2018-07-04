@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import { AngularFireDatabase  } from 'angularfire2/database-deprecated';
 import{HomePage} from "../../pages/home/home"
 import { EmailComposer } from '@ionic-native/email-composer';
+import { InicioSesionPage } from '../../pages/inicio-sesion/inicio-sesion';
 
 /**
  * Generated class for the RegistrarPage page.
@@ -56,6 +57,7 @@ export class RegistrarPage {
     }
     this.verificar_correo()
     console.log("logitud lista:",this.lista.length)
+    this.lista.length
     if (this.lista.length==0) {
       this.afDB.object(`/Usuarios/${ id_Usuario }`).update(Nuevo_Usuario);
       let toast = this.toastCtrl.create({
@@ -65,20 +67,20 @@ export class RegistrarPage {
    toast.present();
      //this.viewCtrl.dismiss();
 
-     let email = {
-      to: 'lisardia.franco@gmail.com',
-      cc: '',
-      bcc: [],
-      attachments: [
-        //Archivos adjuntos
-      ],
-      subject: 'Nuevo Usuario',
-      body: 'Se ha registrado un nuevo usuario',
-      isHtml: true
-    };
-    this.emailComposer.open(email);
+    //  let email = {
+    //   to: 'lisardia.franco@gmail.com',
+    //   cc: '',
+    //   bcc: [],
+    //   attachments: [
+    //     //Archivos adjuntos
+    //   ],
+    //   subject: 'Nuevo Usuario',
+    //   body: 'Se ha registrado un nuevo usuario',
+    //   isHtml: true
+    // };
+    //this.emailComposer.open(email);
 
-     this.navCtrl.setRoot(HomePage)
+     this.navCtrl.setRoot(InicioSesionPage)
     }else{
       let confirmar = this.alertCtrl.create({
         title: 'Aviso',
