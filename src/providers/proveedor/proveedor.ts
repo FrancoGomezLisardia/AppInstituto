@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 /*
@@ -10,6 +9,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ProveedorProvider {
   tipo_usuario:any;
+  usuarioHabilitado:any;
   constructor() {
     console.log('Hello ProveedorProvider Provider');
   }

@@ -64,6 +64,8 @@ Iniciar_Sesion() {
     //    //this.cip.usuario_actual.push(element)
     //    //console.log("ID Usuario Actual:",this.cip.usuario_actual)
       this.proveedor.tipo_usuario=element.tipo_usuario
+      this.proveedor.usuarioHabilitado=element.usuarioHabilitado
+
     //    //this.cip.id_usuario=element.id
         this.navCtrl.setRoot(HomePage,{'usuarioLogeado':element});
        return;

@@ -67,11 +67,30 @@ return false;
 
 this.countryList = countries;
 this.loadedCountryList = countries;
-
+this.consulta()
 });
 //-------------------------------------------------------
 loading.dismiss();
 
+  }
+
+  consulta(){
+    let contenido=[]
+   if(this.proveedor.usuarioHabilitado=="no"){
+    contenido=this.countryList
+    
+   }else{
+    for(let i of this.countryList ){
+      if(i.vista=="todos"){
+        contenido=this.countryList
+    }else{
+      contenido.push(i)
+    }
+   }
+
+
+   }
+   console.log("contenido",contenido)
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad InicioPage');

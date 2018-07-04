@@ -15,6 +15,7 @@ export class NuevoContenidoPage {
   enlace:string = "";
   descripcion: string="";
   ruta: any;
+  vista:string=""
   video:any;
   //imagenPreview:string = "";
   imagen64:string;
@@ -43,7 +44,8 @@ export class NuevoContenidoPage {
       enlace:this.enlace,
       titulo:this.titulo,
       descripcion:this.descripcion,
-      estado:this.estado
+      estado:this.estado,
+      vista:this.vista
     }
    
     
