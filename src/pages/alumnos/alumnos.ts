@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ViewController,
+  AlertController,ToastController } from 'ionic-angular';
 import firebase from 'firebase';
 import { RegistrarPage } from '../registrar/registrar';
 
@@ -25,6 +26,9 @@ export class AlumnosPage {
   public clientesRef:any;
   constructor(public navCtrl: NavController,
               public modalCtrl:ModalController, 
+              public alertCtrl:AlertController,
+              public viewCtrl:ViewController,
+              public toastCtrl:ToastController,
               public navParams: NavParams) {
   
    
@@ -87,5 +91,51 @@ modal.present();
 nuevoCliente(){
 let modal =this.modalCtrl.create(RegistrarPage);
 modal.present();
+}
+
+alta(parametro){
+      
+       
+  let confirmar = this.alertCtrl.create({
+    title: 'Alta',
+    message: '¿Dar alta usuario?',
+    buttons: [
+      {
+        text: 'Cancelar',
+        handler: () => {
+          
+          console.log('Presiono Cancelar');
+        }
+      },
+      {
+        text: 'Aceptar',
+        handler: () => {
+         
+          firebase.database().ref('Usuarios/' +parametro.id).update({
+        //   estado:1,
+        //   nombre:parametro.nombre,
+        //   apellido:parametro.apellido,
+        //   dni:parametro.dni,
+        //   id:parametro.id,
+        //   telefono:parametro.telefono,
+        //   domicilio:parametro.domicilio,
+        //   fecha_Nacimiento:parametro.fecha_Nacimiento,
+        //   sexo:parametro.sexo,
+        //  correo:parametro.correo,
+         condicion:"Habilitado"
+  });
+  let toast = this.toastCtrl.create({
+   message: 'Usuario habilitado',
+   duration: 3000
+ });
+ toast.present();
+ 
+        }
+      }
+    ]
+  });
+  confirmar.present()
+  
+
 }
 }

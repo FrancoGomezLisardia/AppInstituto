@@ -60,7 +60,7 @@ Iniciar_Sesion() {
   for (let index = 0; index < this.listaDeUsuarios.length; index++) {
     
     const element =  this.listaDeUsuarios[index];
-     if (element.contrasena==this.userModel.password && element.correo==this.userModel.email ) {
+     if (element.contrasena==this.userModel.password && element.correo==this.userModel.email && element.condicion=="Habilitado" ) {
     //    //this.guardar_storage(element);
     //    //this.cip.usuario_actual.push(element)
     //    //console.log("ID Usuario Actual:",this.cip.usuario_actual)

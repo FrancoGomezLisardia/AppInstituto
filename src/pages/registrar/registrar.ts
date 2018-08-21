@@ -53,7 +53,8 @@ export class RegistrarPage {
       tipo_usuario:"Alumno",
       correo:this.myForm.value.email,
       contrasena:this.myForm.value.password,
-      estado:1
+      estado:1,
+      condicion:"en espera"
     }
     this.verificar_correo()
     console.log("logitud lista:",this.lista.length)
@@ -170,6 +171,7 @@ confirmPassword: ['', Validators.required],
  interface Interface_Usuario{
   nombre:string;
   apellido:string;
+  condicion: string;
   //dni:number;
   id:string;
   telefono:number;
@@ -180,4 +182,5 @@ confirmPassword: ['', Validators.required],
   correo:string;
   contrasena:number
   estado:number
+
 }

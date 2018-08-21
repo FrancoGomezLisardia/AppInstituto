@@ -31,6 +31,8 @@
                 <h2><ion-icon name="person" item-left></ion-icon><strong class="mayusculas">{{ cliente.nombre }} {{ cliente.apellido }}</strong> </h2>
         <h2><ion-icon name="call" item-left></ion-icon>{{ cliente.telefono }}</h2>
         <h2><ion-icon name="mail" item-left></ion-icon>{{ cliente.correo }}</h2> 
+        <h2>Condicion: {{ cliente.condicion }}</h2>
+        <button ion-button  item-end (click)="alta(cliente)">Alta</button>
               </ion-card-content>
             
        

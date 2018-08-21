@@ -20,7 +20,7 @@ export class HomePage {
   public loadedCountryList:Array<any>;
   public countryRef:any;
   tipo_usuario:string
-  verificar:boolean=false;
+  verificar:boolean=true;
 lista:any;
   constructor(public navCtrl: NavController, 
     public viewCtrl:ViewController,
