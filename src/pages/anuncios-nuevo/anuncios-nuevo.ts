@@ -20,7 +20,7 @@ export class AnunciosNuevoPage {
   descripcion: string = "";
   precio:string="";
   imagenPreview:string = "";
-  imagen64:string;
+  imagen64:string="";
   estado=1;
   constructor(public navCtrl: NavController,
               private imagePicker: ImagePicker,

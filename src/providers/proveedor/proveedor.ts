@@ -22,6 +22,7 @@ export class ProveedorProvider {
     console.log('Hello ProveedorProvider Provider');
   }
 cargar_imagen_anuncio(archivo:archivoSubir){
+  //Mensaje de carga
   let promesa = new Promise( (resolve, reject)=>{
 
       
@@ -29,7 +30,7 @@ cargar_imagen_anuncio(archivo:archivoSubir){
       message: 'Cargando...',
       duration: 3000
     });
-    toast.present();
+    toast.present();//
      
     let storeRef = firebase.storage().ref();
     let nombreArchivo:string = new Date().valueOf().toString(); // 1231231231
