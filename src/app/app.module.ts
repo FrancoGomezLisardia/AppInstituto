@@ -3,6 +3,8 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { ImagePicker } from '@ionic-native/image-picker';
+
 //PAGINAS
 import { InicioSesionPage } from '../pages/inicio-sesion/inicio-sesion';
 import { RegistrarPage } from '../pages/registrar/registrar';
@@ -76,6 +78,7 @@ import {AnunciosPage} from '../pages/anuncios/anuncios'
     StatusBar,
     EmailComposer,
     SplashScreen,
+    ImagePicker,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
    
     ProveedorProvider,
