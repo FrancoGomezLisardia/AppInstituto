@@ -6,7 +6,15 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
+  <ion-navbar color="violeta">
+      <ion-buttons left>
+          <button ion-button (click)="cerrarModal()">
+            <ion-icon name="close-circle" 
+                      class="iconos_nuevo_producto"
+                      color="danger">
+            </ion-icon>
+          </button>
+        </ion-buttons>
     <ion-title>Nuevo anuncio</ion-title>
     <ion-buttons end>
       <button ion-button (click)="registrar()"></button>
@@ -37,7 +45,7 @@
             <ion-input type="number"[(ngModel)]="precio"></ion-input>
           </ion-item>
           
-          <ion-item *ngIf="imagenPreview">
+          <ion-item >
               <img  [src]="imagenPreview">
           </ion-item>
 
