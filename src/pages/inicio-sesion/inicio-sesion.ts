@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,LoadingController,AlertController,ModalController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { RegistrarPage } from '../registrar/registrar';
-
+import {AnunciosPage} from '../anuncios/anuncios'
 import firebase from 'firebase';
 import { UsersModels } from '../../models/users-model';
 import {ProveedorProvider} from "../../providers/proveedor/proveedor";
@@ -54,7 +54,7 @@ loading.dismiss();
 
 Invitado(){
   this.proveedor.tipo_usuario=""
-  this.navCtrl.setRoot(HomePage)
+  this.navCtrl.setRoot(AnunciosPage)
 }
 Iniciar_Sesion() {
   for (let index = 0; index < this.listaDeUsuarios.length; index++) {

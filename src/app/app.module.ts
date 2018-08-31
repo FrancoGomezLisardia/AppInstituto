@@ -7,14 +7,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { InicioSesionPage } from '../pages/inicio-sesion/inicio-sesion';
 import { RegistrarPage } from '../pages/registrar/registrar';
 import { NuevoContenidoPage } from '../pages/nuevo-contenido/nuevo-contenido';
+import {AnunciosNuevoPage} from '../pages/anuncios-nuevo/anuncios-nuevo';
 import { ModificarContenidoPage } from '../pages/modificar-contenido/modificar-contenido';
 import { OneSignal } from '@ionic-native/onesignal';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import * as firebase from 'firebase';
+
 import { AngularFireModule }         from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
+
 import { DetalleAlumnoPage } from '../pages/detalle-alumno/detalle-alumno';
 import { EmailComposer } from '@ionic-native/email-composer';
 
@@ -26,6 +27,7 @@ import { ProveedorProvider } from '../providers/proveedor/proveedor';
 import { AlumnosPage } from '../pages/alumnos/alumnos';
 import { PushNotificationsProvider } from '../providers/push-notifications/push-notifications';
 
+import {AnunciosPage} from '../pages/anuncios/anuncios'
  export const firebaseConfig = {
     apiKey: "AIzaSyA1_-Sc6cTCrQQ3ba7cQAweGYjO_OiIdrs",
     authDomain: "appcrimi.firebaseapp.com",
@@ -44,7 +46,9 @@ import { PushNotificationsProvider } from '../providers/push-notifications/push-
   NuevoContenidoPage,
   ModificarContenidoPage,
   AlumnosPage,
-  DetalleAlumnoPage
+  DetalleAlumnoPage,
+  AnunciosNuevoPage,
+  AnunciosPage
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,9 @@ import { PushNotificationsProvider } from '../providers/push-notifications/push-
     NuevoContenidoPage,
     ModificarContenidoPage,
     AlumnosPage,
-    DetalleAlumnoPage
+    DetalleAlumnoPage,
+    AnunciosNuevoPage,
+    AnunciosPage
   ],
   providers: [
     InAppBrowser,
@@ -71,6 +77,7 @@ import { PushNotificationsProvider } from '../providers/push-notifications/push-
     EmailComposer,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+   
     ProveedorProvider,
     PushNotificationsProvider
   ]

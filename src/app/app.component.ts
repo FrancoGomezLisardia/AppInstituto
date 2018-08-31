@@ -6,7 +6,10 @@ import * as firebase from 'firebase';
 import { HomePage } from '../pages/home/home';
 import { AlumnosPage } from '../pages/alumnos/alumnos';
 
-import { RegistrarPage } from '../pages/registrar/registrar';
+
+
+import {AnunciosNuevoPage} from '../pages/anuncios-nuevo/anuncios-nuevo';
+
 import { NuevoContenidoPage } from '../pages/nuevo-contenido/nuevo-contenido';
 import { PushNotificationsProvider } from '../providers/push-notifications/push-notifications';
 
@@ -39,6 +42,7 @@ export class MyApp {
     { titulo: 'Inicio',          component: HomePage,        icon: 'home'},
     //  { titulo: '',        component: ClientesPage,         icon: 'person'},
      { titulo: 'Nuevo Contenido',         component: NuevoContenidoPage,          icon: 'add'},
+     { titulo: 'Nuevo Anuncio',         component: AnunciosNuevoPage,          icon: 'add'},
     { titulo: 'Alumno',     component:AlumnosPage    ,     icon: 'person'},
     { titulo: 'Cerrar Sesion',   component: InicioSesionPage,     icon: 'close-circle'}
   ];
