@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {NavController, NavParams,ToastController } from 'ionic-angular';
 import {ProveedorProvider} from '../../providers/proveedor/proveedor'
 import { ImagePicker,ImagePickerOptions }         from '@ionic-native/image-picker';
+import {  AngularFireDatabase } from "angularfire2/database-deprecated";
 
 /**
  * 
@@ -11,22 +12,28 @@ import { ImagePicker,ImagePickerOptions }         from '@ionic-native/image-pick
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-anuncios-nuevo',
   templateUrl: 'anuncios-nuevo.html',
 })
 export class AnunciosNuevoPage {
   descripcion: string = "";
-  precio:string="";
+  enlace:string = "";
+  precio:string = "";
   imagenPreview:string = "";
   imagen64:string="";
   estado=1;
+  
   constructor(public navCtrl: NavController,
               private imagePicker: ImagePicker,
               public navParams: NavParams,
-              public proveedor:ProveedorProvider) {
+              public toastCtrl:ToastController,
+              public proveedor:ProveedorProvider,
+              public fireDatabase: AngularFireDatabase,) {
+                console.log(this.descripcion.length,this.precio.length,this.enlace.length)
   }
+  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AnunciosNuevoPage');
@@ -80,12 +87,26 @@ export class AnunciosNuevoPage {
 //   });
 // }
   registrar(){
+    let key_=new Date().valueOf().toString();
     let archivo={
+      key:key_,
       img:this.imagen64,
       descripcion:this.descripcion,
       precio:this.precio,
-      estado:this.estado
+      estado:this.estado,
+      enlace:this.enlace
     };
-    this.proveedor.cargar_imagen_anuncio(archivo).then(()=>this.cerrarModal() );
+
+    this.fireDatabase.object(`/anuncios/${ key_ }`).update(archivo)
+    let toast = this.toastCtrl.create({
+      message: 'Enlace agregado',
+      duration: 3000
+    });
+    toast.present();
+    //this.proveedor.cargar_imagen_anuncio(archivo).then(()=>this.cerrarModal() );
   }
+
+
+  
+
 }

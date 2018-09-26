@@ -18,28 +18,38 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-searchbar (ionInput)="getItems2($event)" placeholder="Buscar"></ion-searchbar>
+<ion-content >
+  <ion-searchbar (ionInput)="getItems2($event)" placeholder="Buscar por apellido"></ion-searchbar>
+  <button (click)="usuariosTodos()" ion-button color="violeta">Todos</button>
+  <button (click)="usuariosEnEspera()" ion-button color="violeta">En espera</button>
+  <button (click)="usuariosHabilitado()" ion-button color="violeta">Habilitados</button>
+
 
   <ion-list>
-           
-   
-      <ion-item *ngFor="let cliente of clientesList ">
+             
+
+      <ion-item *ngFor="let cliente of listaFinal ">
       <ion-card>
         
             <ion-card-content>
                 <h2><ion-icon name="person" item-left></ion-icon><strong class="mayusculas">{{ cliente.nombre }} {{ cliente.apellido }}</strong> </h2>
         <h2><ion-icon name="call" item-left></ion-icon>{{ cliente.telefono }}</h2>
         <h2><ion-icon name="mail" item-left></ion-icon>{{ cliente.correo }}</h2> 
-        <h2 text-color="red">Condicion: {{ cliente.condicion }}</h2>
-        <button ion-button  item-end (click)="alta(cliente)">Alta</button>
+        <h2 text-color="danger">{{ cliente.condicion }}</h2>
+       
               </ion-card-content>
             
        
-        
+        <ion-fab top right>
+            <button  ion-fab mini color="danger" (click)="alta(cliente)">
+                <ion-icon name="thumbs-up"></ion-icon>
+              </button>
+            <button ion-fab mini color="danger"(click)="eliminar(cliente)">
+              <ion-icon name="trash"></ion-icon>
+            </button>
+          </ion-fab>
       </ion-card>
-       
-        <!-- <button ion-button clear item-end (click)="detalleCliente(cliente)">Ver</button> -->
+        
                
       </ion-item>
     </ion-list> 

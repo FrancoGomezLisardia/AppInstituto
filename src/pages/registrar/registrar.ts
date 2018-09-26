@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController,ToastController,AlertController } from 'ionic-angular';
+import {  NavController, NavParams,ViewController,ToastController,AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import firebase from 'firebase';
 import { AngularFireDatabase  } from 'angularfire2/database-deprecated';
@@ -14,7 +14,7 @@ import { InicioSesionPage } from '../../pages/inicio-sesion/inicio-sesion';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-registrar',
   templateUrl: 'registrar.html',

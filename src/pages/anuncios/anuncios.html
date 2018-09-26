@@ -6,7 +6,12 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
+  <ion-navbar color="violeta">
+      <ion-buttons right>
+          <button ion-button (click)="cerrar()">
+              <ion-icon name="close-circle"color="danger"></ion-icon>
+          </button>
+      </ion-buttons>
     <ion-title text-center>Anuncios</ion-title>
   </ion-navbar>
 
@@ -14,34 +19,30 @@
 
 
 <ion-content padding>
-  ASDASD
-  <ion-list>
-    <ion-item *ngFor="let a of productos">
+  <ion-searchbar (ionInput)="getItems2($event)" placeholder="Buscar"></ion-searchbar>
+  <ion-list *ngFor="let video of countryList">
+      
+   
+    <ion-item  >
         
-            {{ a.descripcion }}
-            
-            ${{a.precio }}
-    </ion-item>
-  </ion-list>
-  <ion-grid>
-    <ion-row *ngFor="let country of countryList" >
-      <ion-col>
-        <button ion-item (click)="IrADetalleProducto(country)">
-          <ion-card >
-            <img  style="width: 250px; height: 250px;"  [src]="country.img">
-            <ion-card-content>
-            <ion-card-title>
-             {{ country.descripcion }}
-               <br>
-             ${{ country.precio }}
-            </ion-card-title>
-            
-            </ion-card-content>
-  
-          </ion-card>	
-        </button>
-       
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+            <img   src="./assets/imgs/imagenCrimi.jpeg" >
+       <h2>{{video.descripcion}}</h2>
+               
+       <p>$ {{video.precio}}</p>
+                
+        
+        
+        <div>
+            <button   ion-button clear item-end  (click)="irASitio(video.enlace)" >Ver</button>
+     
+        <!-- <button *ngIf= "!verificar" ion-button clear item-end style="display: none;" (click)="editar(video)" >Editar</button> 
+        <button *ngIf= "verificar" ion-button clear item-end  (click)="editar(video)" >Editar</button>
+
+        <button *ngIf= "!verificar" ion-button clear item-end style="display: none;" (click)="eliminar(video)" >Eliminar</button> 
+        <button *ngIf= "verificar" ion-button clear item-end  (click)="eliminar(video)" >Eliminar</button> -->
+        </div>
+        
+      </ion-item>
+      
+    </ion-list>
 </ion-content>

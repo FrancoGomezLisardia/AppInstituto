@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>detalleAlumno</ion-title>
+  <ion-navbar color="violeta">
+    <ion-title text-center>Detalle Alumno</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -26,17 +26,17 @@
        <br>
        <strong>DNI:</strong>  {{ alumno.dni }}
        <br>
-       <strong>Domicilio:</strong>  {{ cliente.domicilio }}
+       <!-- <strong>Domicilio:</strong>  {{ cliente.domicilio }} -->
        <br>
-       <strong>Fecha Nacimiento:</strong>  {{ alumno.fecha_Nacimiento }}
+       <!-- <strong>Fecha Nacimiento:</strong>  {{ alumno.fecha_Nacimiento }} -->
        <br>
-       <strong>Sexo:</strong> {{ cliente.sexo }}
+       <!-- <strong>Sexo:</strong> {{ cliente.sexo }} -->
        
     </ion-card-content>
   </ion-card>
   <ion-fab top right>
-      <button ion-fab mini color="danger" (click)="modificar()">
-        <ion-icon name="create"></ion-icon></button>
+      <!-- <button ion-fab mini color="danger" (click)="modificar()">
+        <ion-icon name="create"></ion-icon></button> -->
       <button ion-fab mini color="danger"(click)="eliminar()">
         <ion-icon name="trash"></ion-icon>
       </button>

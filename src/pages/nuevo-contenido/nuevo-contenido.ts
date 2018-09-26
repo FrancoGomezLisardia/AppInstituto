@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController,ToastController } from 'ionic-angular';
+import { NavController, NavParams,ViewController,ToastController } from 'ionic-angular';
 
 import{HomePage} from "../../pages/home/home"
 import * as firebase from 'firebase';
 import {  AngularFireDatabase } from "angularfire2/database-deprecated";
 
-@IonicPage()
 @Component({
   selector: 'page-nuevo-contenido',
   templateUrl: 'nuevo-contenido.html',

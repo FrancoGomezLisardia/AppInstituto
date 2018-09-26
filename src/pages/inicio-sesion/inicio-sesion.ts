@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,LoadingController,AlertController,ModalController } from 'ionic-angular';
+import { NavController, NavParams,LoadingController,
+  MenuController,AlertController,ModalController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { RegistrarPage } from '../registrar/registrar';
 import {AnunciosPage} from '../anuncios/anuncios'
@@ -15,7 +16,7 @@ import { AngularFireDatabase  } from 'angularfire2/database-deprecated';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-inicio-sesion',
   templateUrl: 'inicio-sesion.html',
@@ -25,11 +26,13 @@ export class InicioSesionPage {
   listaDeUsuarios:any[]= [];
   public usuariosRef:firebase.database.Reference;
   constructor(public navCtrl: NavController, 
+              public menuCtrl: MenuController,
               public navParams: NavParams,
               public modalCtrl:ModalController,
               private proveedor:ProveedorProvider,
               private alertCtrl:AlertController,
               private loadingCtrl:LoadingController) {
+                this.menuCtrl.get().enable(false)
     let loading = this.loadingCtrl.create({
     content: 'Cargando Aplicacion. Por favor, espere...'
 });

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController,AlertController,ToastController } from 'ionic-angular';
+import {  NavController, NavParams,ViewController,AlertController,ToastController } from 'ionic-angular';
 import firebase from 'firebase';
 //import { AngularFireDatabase,FirebaseListObservable   } from 'angularfire2/database';
 //import { AngularFireDatabase, } from 'angularfire2/database';
@@ -12,7 +12,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-modificar-contenido',
   templateUrl: 'modificar-contenido.html',

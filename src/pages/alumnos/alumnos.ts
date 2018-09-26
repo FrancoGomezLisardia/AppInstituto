@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ViewController,
+import { NavController, NavParams, ModalController, ViewController,
   AlertController,ToastController } from 'ionic-angular';
 import firebase from 'firebase';
 import { RegistrarPage } from '../registrar/registrar';
@@ -13,7 +13,7 @@ import { DetalleAlumnoPage } from '../detalle-alumno/detalle-alumno';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-alumnos',
   templateUrl: 'alumnos.html',
@@ -22,8 +22,11 @@ export class AlumnosPage {
   //clientes: FirebaseListObservable<any>;
   //Variables barra de busqueda
   public clientesList:Array<any>;
+ 
+   enEspera:any[] = [];
   public loadedClientesList:Array<any>;
   public clientesRef:any;
+  listaFinal:any[] = [];
   constructor(public navCtrl: NavController,
               public modalCtrl:ModalController, 
               public alertCtrl:AlertController,
@@ -48,13 +51,77 @@ return false;
 
 this.clientesList = clientes;
 this.loadedClientesList = clientes;
-
+this.listaFinal=this.clientesList
 });
 //-------------------------------------------------------
 }
 
+eliminar(parametro){
+  //Hace una eliminacion logica de los productos
+ //modificando su estado a 0
+ let confirmar = this.alertCtrl.create({
+   title: 'Eliminar',
+   message: '¿Desea eliminar este usaurio?',
+   buttons: [
+     {
+       text: 'Cancelar',
+       handler: () => {
+         
+         console.log('Presiono Cancelar');
+       }
+     },
+     {
+       text: 'Aceptar',
+       handler: () => {
+        console.log(parametro.id)
+         firebase.database().ref('Usuarios/' + parametro.id).remove();
+ let toast = this.toastCtrl.create({
+  message: 'Usuario eliminado',
+  duration: 3000
+});
+toast.present();
+
+       }
+     }
+   ]
+ });
+ confirmar.present()
+ 
+}
+usuariosEnEspera(){
+ let enEspera:any[]= [];
+  for (let index = 0; index < this.clientesList.length; index++) {
+    const element = this.clientesList[index];
+    if (element.condicion=="en espera") {
+     enEspera.push(element)
+     console.log(element)
+    }
+    
+  }
+  this.listaFinal= enEspera
+  console.log(enEspera)
+}
+usuariosTodos(){
+  this.listaFinal=this.clientesList
+  console.log(this.clientesList)
+}
+usuariosHabilitado(){
+  let habilitados:any[]= [];
+  for (let index = 0; index < this.clientesList.length; index++) {
+    const element = this.clientesList[index];
+    if (element.condicion=="Habilitado") {
+     habilitados.push(element)
+     console.log(element)
+    }
+    
+  }
+  this.listaFinal= habilitados
+  console.log(habilitados)
+}
+
 
 initializeItems2(): void {
+  this.listaFinal= this.loadedClientesList;
 this.clientesList = this.loadedClientesList;
 console.log(this.clientesList);
 }
@@ -71,7 +138,7 @@ if (!q) {
 return;
 }
 
-this.clientesList = this.clientesList.filter((v) => {
+this.listaFinal=  this.listaFinal.filter((v) => {
 if(v.apellido && q ) {
 if ((v.apellido.toLowerCase().indexOf(q.toLowerCase()) > -1)) {
 return true;

@@ -7,25 +7,32 @@
 <ion-header>
 
   <ion-navbar color="violeta">
-      <ion-buttons left>
-          <button ion-button (click)="cerrarModal()">
-            <ion-icon name="close-circle" 
-                      class="iconos_nuevo_producto"
-                      color="danger">
-            </ion-icon>
+      <ion-buttons  left>
+          <button ion-button menuToggle>
+           <ion-icon  name="menu"></ion-icon>
           </button>
-        </ion-buttons>
+      </ion-buttons>
     <ion-title>Nuevo anuncio</ion-title>
-    <ion-buttons end>
-      <button ion-button (click)="registrar()"></button>
-      <!-- [disabled]="titulo.lenght <=1 || precio ==0 || imagenPreview <= 1 || stock ==0"> -->
-      <ion-icon name="checkmark-circle" 
-                color="secondary"
-                class="iconos_nuevo_producto">
-      </ion-icon>
     
   
+    <!-- <ion-buttons end>
+        <button ion-button (click)="registrar()"
+         [disabled]="precio.lenght <=1 || enlace.lenght <= 1 || descripcion.lenght<=1">
+       
+        <ion-icon name="checkmark-circle" 
+                  color="secondary"
+                  class="iconos_nuevo_producto">
+        </ion-icon>
+      </button> -->
+
+    <ion-buttons end>
+       <button ion-button (click)="registrar()"
+       [disabled]="precio.lenght ==0 || enlace.lenght == 0 || descripcion.lenght==0">
+         <ion-icon name="checkmark-circle" color="secondary"></ion-icon>
+       </button>
     </ion-buttons>
+
+    
   </ion-navbar>
   
 </ion-header>
@@ -38,19 +45,23 @@
 
           <ion-item>
             <ion-label floating>Descripcion:</ion-label>
-            <ion-input type="text" [(ngModel)]="decripcion"></ion-input>
+            <ion-input type="text" [(ngModel)]="descripcion"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label floating>Precio</ion-label>
             <ion-input type="number"[(ngModel)]="precio"></ion-input>
           </ion-item>
           
-          <ion-item >
+          <ion-item>
+            <ion-label floating>Enlace:</ion-label>
+            <ion-input type="text"[(ngModel)]="enlace"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="imagenPreview">
               <img  [src]="imagenPreview">
           </ion-item>
 
         </ion-list>
-        <ion-grid>
+        <!-- <ion-grid>
           <ion-row >
             <ion-col>
              <button ion-button block icon-left (click)="seleccionar_foto()">
@@ -61,7 +72,7 @@
             </ion-col>
             
           </ion-row>
-        </ion-grid>
+        </ion-grid> -->
 
 </ion-content>
 

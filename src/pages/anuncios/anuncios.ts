@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {NavController, NavParams } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase  } from 'angularfire2/database-deprecated';
+import {InicioSesionPage} from '../inicio-sesion/inicio-sesion'
+
 /**
  * Generated class for the AnunciosPage page.
  *
@@ -8,8 +10,8 @@ import { FirebaseListObservable, AngularFireDatabase  } from 'angularfire2/datab
  * Ionic pages and navigation.
  */
 import firebase from 'firebase';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
-@IonicPage()
 @Component({
   selector: 'page-anuncios',
   templateUrl: 'anuncios.html',
@@ -23,7 +25,9 @@ export class AnunciosPage {
 
 //------------------------------------------------
 anuncios:any;
-  constructor(public navCtrl: NavController,public fireDatabase: AngularFireDatabase, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+    private iab: InAppBrowser,
+    public fireDatabase: AngularFireDatabase, public navParams: NavParams) {
 
 
     // this.productos=this.fireDatabase.list('anuncios')
@@ -48,5 +52,13 @@ this.loadedCountryList = countries;
   ionViewDidLoad() {
     console.log('ionViewDidLoad AnunciosPage');
   }
+  cerrar(){
+    
+      this.navCtrl.setRoot(InicioSesionPage)
+     
+  }
 
+  irASitio(enlace){
+    this.iab.create(enlace,"_blank");
+  }
 }
